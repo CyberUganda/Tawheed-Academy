@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tawheed Academy - Downloads</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .warning {
+            background: #ff4444;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            list-style: none;
+        }
+
+        .resource-item {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .resource-type {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .download-btn, .preview-btn {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn {
+            background: #4CAF50;
+        }
+
+        .download-btn:hover {
+            background: #45a049;
+        }
+
+        .preview-btn {
+            background: #555;
+        }
+
+        .preview-btn:hover {
+            background: #666;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            margin: 0 auto 20px;
+            display: block;
+            background: #333;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .resource-item {
+                padding: 10px;
+            }
+
+            .resource-title {
+                font-size: 1rem;
+            }
+
+            .download-btn, .preview-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resource-list {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section h2 {
+                font-size: 1.3rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tawheed Academy</h1>
+            <p>Download Islamic Resources - Audio, Video, and PDFs</p>
+        </div>
+
+        <div class="warning" id="serverWarning">
+            <p><strong>Warning:</strong> Downloads may not work because this page is being accessed via the file:// protocol. Please run this website through a local server (e.g., using Python: <code>python -m http.server 8000</code>) and access it via <code>http://localhost:8000</code>.</p>
+        </div>
+
+        <input type="text" class="search-box" placeholder="Search resources by title...">
+
+        <!-- PDF Section -->
+        <div class="section">
+            <h2>PDF Resources</h2>
+            <ul class="resource-list" data-type="pdf">
+                <li class="resource-item">
+                    <span class="resource-title">Aqidat-ut-Tawhi</span>
+                    <span class="resource-type">PDF</span>
+                    <div class="button-group">
+                        <a href="./pdfs/007-Al-Katha.pdf" download class="download-btn">Download</a>
+                        <a href="./pdfs/007-Al-Katha.pdf" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">Noor-Book.com</span>
+                    <span class="resource-type">PDF</span>
+                    <div class="button-group">
+                        <a href="./pdfs/002-Al-Baqarah.pdf" download class="download-btn">Download</a>
+                        <a href="./pdfs/002-Al-Baqarah.pdf" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">Yassarnal-Quran</span>
+                    <span class="resource-type">PDF</span>
+                    <div class="button-group">
+                        <a href="./pdfs/003-Aul-E-treran.pdf" download class="download-btn">Download</a>
+                        <a href="./pdfs/003-Aul-E-treran.pdf" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">004 Ar-Nika</span>
+                    <span class="resource-type">PDF</span>
+                    <div class="button-group">
+                        <a href="./pdfs/004-Ar-Nika.pdf" download class="download-btn">Download</a>
+                        <a href="./pdfs/004-Ar-Nika.pdf" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">005 Al-Ma-klah</span>
+                    <span class="resource-type">PDF</span>
+                    <div class="button-group">
+                        <a href="./pdfs/005-Al-Ma-klah.pdf" download class="download-btn">Download</a>
+                        <a href="./pdfs/005-Al-Ma-klah.pdf" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">006 Al-Anzam</span>
+                    <span class="resource-type">PDF</span>
+                    <div class="button-group">
+                        <a href="./pdfs/006-Al-Anzam.pdf" download class="download-btn">Download</a>
+                        <a href="./pdfs/006-Al-Anzam.pdf" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Audio Section -->
+        <div class="section">
+            <h2>Audio Resources</h2>
+            <ul class="resource-list" data-type="audio">
+                <li class="resource-item">
+                    <span class="resource-title">Tawheed Lecture 1</span>
+                    <span class="resource-type">MP3</span>
+                    <div class="button-group">
+                        <a href="./audio/lecture1.mp3" download class="download-btn">Download</a>
+                        <a href="./audio/lecture1.mp3" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">Tawheed Lecture 2</span>
+                    <span class="resource-type">MP3</span>
+                    <div class="button-group">
+                        <a href="./audio/lecture2.mp3" download class="download-btn">Download</a>
+                        <a href="./audio/lecture2.mp3" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">Quran Recitation - Surah Al-Fatiha</span>
+                    <span class="resource-type">MP3</span>
+                    <div class="button-group">
+                        <a href="./audio/surah-fatiha.mp3" download class="download-btn">Download</a>
+                        <a href="./audio/surah-fatiha.mp3" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Video Section -->
+        <div class="section">
+            <h2>Video Resources</h2>
+            <ul class="resource-list" data-type="video">
+                <li class="resource-item">
+                    <span class="resource-title">Introduction to Tawheed</span>
+                    <span class="resource-type">MP4</span>
+                    <div class="button-group">
+                        <a href="./videos/intro-tawheed.mp4" download class="download-btn">Download</a>
+                        <a href="./videos/intro-tawheed.mp4" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">Islamic History Lesson</span>
+                    <span class="resource-type">MP4</span>
+                    <div class="button-group">
+                        <a href="./videos/islamic-history.mp4" download class="download-btn">Download</a>
+                        <a href="./videos/islamic-history.mp4" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-title">Quran Tafsir - Surah Al-Baqarah</span>
+                    <span class="resource-type">MP4</span>
+                    <div class="button-group">
+                        <a href="./videos/tafsir-baqarah.mp4" download class="download-btn">Download</a>
+                        <a href="./videos/video1.mp4" target="_blank" class="preview-btn">Preview</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Check if running via file:// protocol
+        if (window.location.protocol === 'file:') {
+            document.getElementById('serverWarning').style.display = 'block';
+        }
+
+        // Search functionality
+        document.querySelector('.search-box').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.resource-item').forEach(item => {
+                const title = item.querySelector('.resource-title').textContent.toLowerCase();
+                item.style.display = title.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
