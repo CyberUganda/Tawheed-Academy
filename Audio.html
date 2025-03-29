@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Bastt - Audio Playlist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+
+        .header h2 {
+            color: #888;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+        }
+
+        .playlist {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #333;
+            border: none;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .track-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .track-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #333;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .track-item:hover {
+            background: #404040;
+        }
+
+        .track-title {
+            font-weight: bold;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .track-duration {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .player-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .download-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .track-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px;
+            }
+
+            .track-duration {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ABDUL BASTT</h1>
+            <h2>Audio Playlist • Stream & Download</h2>
+        </div>
+
+        <div class="playlist">
+            <input type="text" class="search-box" placeholder="Search tracks...">
+            
+            <ul class="track-list">
+                <li class="track-item">
+                    <span class="track-title">007 Al-Katha</span>
+                    <span class="track-duration">00:47</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">002 Al-Baqarah</span>
+                    <span class="track-duration">06:45:50</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">003 Aul-E-treran</span>
+                    <span class="track-duration">01:27:49</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">004 Ar-Nika</span>
+                    <span class="track-duration">01:28:03</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">005 Al-Ma-klah</span>
+                    <span class="track-duration">01:07:45</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">006 Al-Anzam</span>
+                    <span class="track-duration">01:05:59</span>
+                </li>
+            </ul>
+
+            <div class="player-controls">
+                <span id="now-playing">Now Playing: </span>
+                <button class="download-btn">Download Current Track</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" volume="0.2">
+        <source src="path/to/background.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Initialize audio elements
+        const mainAudio = new Audio();
+        const bgMusic = document.getElementById('bgMusic');
+        let currentTrack = null;
+        let currentTrackTitle = '';
+
+        // Set initial background music volume
+        bgMusic.volume = 0.2;
+
+        // Auto-play background music on user interaction
+        document.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(() => {
+                    console.log('Background music playback requires user interaction');
+                });
+            }
+        });
+
+        // Track click handler
+        document.querySelectorAll('.track-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.querySelector('.track-title').textContent;
+                currentTrackTitle = title;
+                
+                // Update UI
+                document.querySelectorAll('.track-item').forEach(t => 
+                    t.style.background = t === this ? '#404040' : '#333');
+                
+                document.getElementById('now-playing').textContent = `Now Playing: ${title}`;
+
+                // Handle audio playback
+                if (mainAudio.paused || mainAudio.src !== `audio/${title}.mp3`) {
+                    mainAudio.src = `audio/${title}.mp3`;
+                    mainAudio.play();
+                    // Lower background music volume during playback
+                    bgMusic.volume = 0.1;
+                } else {
+                    mainAudio.paused ? mainAudio.play() : mainAudio.pause();
+                }
+            });
+        });
+
+        // Restore background music volume when main audio stops
+        mainAudio.addEventListener('pause', () => {
+            bgMusic.volume = 0.2;
+        });
+
+        // Search functionality
+        document.querySelector('.search-box').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.track-item').forEach(item => {
+                const title = item.querySelector('.track-title').textContent.toLowerCase();
+                item.style.display = title.includes(term) ? 'flex' : 'none';
+            });
+        });
+
+        // Download functionality
+        document.querySelector('.download-btn').addEventListener('click', () => {
+            if (currentTrackTitle) {
+                const link = document.createElement('a');
+                link.href = `audio/${currentTrackTitle}.mp3`;
+                link.download = true;
+                link.click();
+            }
+        });
+    </script>
+</body>
+</html>

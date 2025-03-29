@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Recitation Platform</title>
+    <style>
+        :root {
+            --primary-color: #2c5f2d;
+            --secondary-color: #f0faf0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 20px;
+            flex: 1;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin: 20px 0;
+            font-size: 1.5rem;
+        }
+
+        .reciter-list {
+            list-style: none;
+            padding: 0;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .reciter-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reciter-item:last-child {
+            border-bottom: none;
+        }
+
+        .reciter-link {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .reciter-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .subsection-title {
+            font-weight: bold;
+            color: #1e401f;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-radius: 8px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.3rem;
+                line-height: 1.4;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .reciter-item {
+                padding: 10px 0;
+                gap: 10px;
+            }
+
+            .reciter-link {
+                font-size: 0.9rem;
+            }
+
+            .profile-image {
+                width: 35px;
+                height: 35px;
+            }
+
+            .footer {
+                padding: 30px 15px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .main-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="logo.png" alt="Website Logo" class="logo">
+        <h1 style="color: var(--primary-color); margin: 0">Support Us This Ramsdam<br>Your donation helps us continue our work!</h1>
+    </header>
+
+    <h2 class="section-title">POPULAR RECITERS</h2>
+    
+    <div class="main-container">
+        <!-- Left Column -->
+        <div class="column">
+            <div class="subsection-title">About Best</div>
+            <ul class="reciter-list">
+                <li class="reciter-item">
+                    <a href="#" class="reciter-link">
+                        <img src="abdul_basit.jpg" alt="Abdul Basit" class="profile-image">
+                        Abdul Basit
+                    </a>
+                    <ul class="nested-list">
+                        <li class="reciter-item">
+                            <a href="#" class="reciter-link">
+                                <img src="abdur_rahman.jpg" alt="Abdur Rahman" class="profile-image">
+                                Abdur Rahman
+                            </a>
+                        </li>
+                        <li class="reciter-item">
+                            <a href="#" class="reciter-link">
+                                <img src="as-sudais.jpg" alt="As-Sudais" class="profile-image">
+                                As-Sudais
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Other items -->
+            </ul>
+        </div>
+
+        <!-- Right Column -->
+        <div class="column">
+            <div class="subsection-title">Military Radical Ability</div>
+            <ul class="reciter-list">
+                <li class="reciter-item">
+                    <a href="#" class="reciter-link">
+                        <img src="mishary.jpg" alt="Mishary" class="profile-image">
+                        Mishary Rashid Alafasy
+                    </a>
+                </li>
+                <!-- Other items -->
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>Tawheed Academy</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Mission</a></li>
+                    <li><a href="#">Vision</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacts</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@tawheed.academy">Email</a></li>
+                    <li><a href="tel:+1234567890">Phone</a></li>
+                    <li><a href="#">Social Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Location</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Main Campus</a></li>
+                    <li><a href="#">Branch Locations</a></li>
+                    <li><a href="#">Online Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Books</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">PDFs</a></li>
+                    <li><a href="#">Courses</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.reciter-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const reciterName = this.textContent.trim();
+                alert(`Selected reciter: ${reciterName}\n(Add playback/download logic here)`);
+            });
+        });
+    </script>
+</body>
+</html>

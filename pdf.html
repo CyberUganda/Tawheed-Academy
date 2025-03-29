@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Bastt - PDF Playlist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            color: #4CAF50;
+        }
+
+        .header h2 {
+            color: #888;
+            font-size: 1.2rem;
+        }
+
+        .playlist {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background: #333;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .track-list {
+            list-style: none;
+        }
+
+        .track-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #333;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .track-item:hover {
+            background: #404040;
+        }
+
+        .track-title {
+            font-weight: bold;
+        }
+
+        .track-duration {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .continue-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #4CAF50;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .download-btn {
+            background: #45a049;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .track-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .track-duration {
+                margin-top: 5px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ABDUL BASTT</h1>
+            <h2>PDF Playlist • Documents</h2>
+        </div>
+
+        <div class="playlist">
+            <input type="text" class="search-box" placeholder="Search by title...">
+            
+            <ul class="track-list">
+                <li class="track-item">
+                    <span class="track-title">007 Al-Katha</span>
+                    <span class="track-duration">PDF</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">002 Al-Baqarah</span>
+                    <span class="track-duration">PDF</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">003 Aul-E-treran</span>
+                    <span class="track-duration">PDF</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">004 Ar-Nika</span>
+                    <span class="track-duration">PDF</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">005 Al-Ma-klah</span>
+                    <span class="track-duration">PDF</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">006 Al-Anzam</span>
+                    <span class="track-duration">PDF</span>
+                </li>
+            </ul>
+
+            <div class="continue-section">
+                <span>Ahmed Amir - Last Viewed: 002 Al-Baqarah</span>
+                <button class="download-btn">Download PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" volume="0.3">
+        <source src="path/to/background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Background music setup
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.volume = 0.3; // 30% volume
+        bgMusic.play().catch(error => {
+            console.log("Autoplay prevented. Click anywhere to start music.");
+        });
+
+        // Enable audio on user interaction
+        document.body.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+            }
+        });
+
+        let currentPDF = '002 Al-Baqarah';
+
+        document.querySelectorAll('.track-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const pdfTitle = this.querySelector('.track-title').textContent;
+                currentPDF = pdfTitle;
+                
+                // Update continue section
+                document.querySelector('.continue-section span').textContent = 
+                    `Ahmed Amir - Last Viewed: ${pdfTitle}`;
+
+                // Update UI
+                document.querySelectorAll('.track-item').forEach(t => 
+                    t.style.background = t === this ? '#404040' : '#333');
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.search-box').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.track-item').forEach(item => {
+                const title = item.querySelector('.track-title').textContent.toLowerCase();
+                item.style.display = title.includes(searchTerm) ? 'flex' : 'none';
+            });
+        });
+
+        // Download functionality
+        document.querySelector('.download-btn').addEventListener('click', function() {
+            const pdfUrl = `path/to/pdf/${currentPDF}.pdf`;
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = true;
+            link.click();
+        });
+    </script>
+</body>
+</html>

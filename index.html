@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tawheed Academy - Who is your lord?</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5f2d;
+            --secondary-color: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--secondary-color);
+            padding-top: 70px;
+            cursor: default;
+        }
+
+        /* Header Styles */
+        .navbar {
+            background-color: var(--primary-color) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #1e401f;
+            border-color: #1e401f;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            display: inline-block;
+            position: relative;
+            color: white;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 400;
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .typewriter-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Video Cards */
+        .video-container {
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scrollbar-width: none;
+        }
+
+        .video-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .video-row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .video-card {
+            flex: 0 0 300px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover .play-button {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .video-title {
+            padding-bottom: 25px;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: scale(1.1);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 99;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #1e401f;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                height: 50vh;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 50px 0;
+            }
+
+            .video-row {
+                flex-wrap: wrap;
+            }
+            
+            .video-card {
+                flex: 0 0 100%;
+            }
+
+            .typewriter-text {
+                white-space: normal;
+                border-right: none;
+                animation: none;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/971525748038" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img1.jpeg" alt="Tawheed Academy Logo">
+                Tawheed Academy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quran">Quran</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#videos">Videos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resources">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#donate">Donate</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1 class="display-4 fw-bold">Welcome to Tawheed Academy</h1>
+            <div class="typewriter">
+                <p class="typewriter-text">Learn Quran and Islamic studies with expert teachers</p>
+            </div>
+            <a href="#videos" class="btn btn-primary btn-lg mt-3">Watch Videos</a>
+        </div>
+    </section>
+
+    <!-- Quran Section -->
+    <section class="section" id="quran">
+        <div class="container">
+            <h2 class="section-title">Quran Recitations</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Surat Al-Fatiha</h5>
+                            <audio controls class="w-100">
+                                <source src="001.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Surat Al-Baqara</h5>
+                            <audio controls class="w-100">
+                                <source src="https://www.islamic-relief.org.uk/wp-content/uploads/2020/03/Al-Baqarah.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="section bg-light" id="videos">
+        <div class="container">
+            <h2 class="section-title">Educational Videos</h2>
+            <div class="video-container">
+                <div class="video-row">
+                    <!-- Video Card 1 -->
+                    <div class="video-card" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="videos/video1.mp4">
+                        <img src="thumbnails/img1.jpeg" alt="Quran Basics" class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h3 class="video-title">Quran Basics</h3>
+                    </div>
+                    <br>
+                    <!-- Video Card 2 -->
+                    <div class="video-card" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="video/video2.mp4">
+                        <img src="thumbnails/img1.jpeg" alt="Tajweed Rules" class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h3 class="video-title">Tajweed Rules</h3>
+                    </div>
+                     <br>
+                    <!-- Video Card 3 -->
+                    <div class="video-card" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="video/video3.mp4">
+                        <img src="thumbnails/img1.jpeg" alt="Memorization Tips" class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h3 class="video-title">Memorization Tips</h3>
+                    </div>
+                    <br>
+                    <!-- Video Card 4 -->
+                    <div class="video-card" data-bs-toggle="modal" data-bs-target="#videoModal" data-video="video/video4.mp4">
+                        <img src="thumbnails/img1.jpeg" alt="Islamic History" class="video-thumbnail">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h3 class="video-title">Islamic History</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="section" id="resources">
+        <div class="container">
+            <h2 class="section-title">Resources</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Tafsir Book</h5>
+                            <p class="card-text">Download our comprehensive tafsir guide.</p>
+                            <a href="pdf.html" class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Hadith Collection</h5>
+                            <p class="card-text">Authentic hadith collection for daily study.</p>
+                            <a href="pdf.html" class="btn btn-primary">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Section -->
+    <section class="section bg-light" id="donate">
+        <div class="container">
+            <h2 class="section-title">Support Our Work</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Make a Donation</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Amount</label>
+                                    <input type="number" class="form-control" placeholder="Enter amount">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Payment Method</label>
+                                    <select class="form-select">
+                                        <option>Credit Card</option>
+                                        <option>PayPal</option>
+                                        <option>Bank Transfer</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Donate Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="modal fade" id="videoModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <video id="modalVideo" controls class="w-100" style="border-radius: 10px;">
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">© 2025 Tawheed Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Typewriter Effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const phrases = [
+                "Learn Quran and Islamic studies with expert teachers",
+                "Understand the true meaning of Tawheed",
+                "Memorize the Holy Quran with proper Tajweed",
+                "Discover the beauty of Islamic knowledge"
+            ];
+            const el = document.querySelector('.typewriter-text');
+            
+            if (window.innerWidth > 768) {
+                let currentPhrase = 0;
+                let isDeleting = false;
+                let text = '';
+                let typingSpeed = 100;
+                let pauseBetweenPhrases = 2000;
+                
+                function typeWriter() {
+                    const fullText = phrases[currentPhrase];
+                    
+                    if (isDeleting) {
+                        text = fullText.substring(0, text.length - 1);
+                        typingSpeed = 50;
+                    } else {
+                        text = fullText.substring(0, text.length + 1);
+                        typingSpeed = 100;
+                    }
+                    
+                    el.textContent = text;
+                    
+                    if (!isDeleting && text === fullText) {
+                        typingSpeed = pauseBetweenPhrases;
+                        isDeleting = true;
+                    } else if (isDeleting && text === '') {
+                        isDeleting = false;
+                        currentPhrase = (currentPhrase + 1) % phrases.length;
+                        typingSpeed = 500;
+                    }
+                    
+                    setTimeout(typeWriter, typingSpeed);
+                }
+                
+                setTimeout(typeWriter, 1000);
+            } else {
+                el.textContent = phrases[0];
+            }
+
+            // Video Modal
+            const videoModal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+
+            videoModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const videoSrc = button.getAttribute('data-video');
+                modalVideo.src = videoSrc;
+            });
+
+            videoModal.addEventListener('hidden.bs.modal', function() {
+                modalVideo.pause();
+                modalVideo.removeAttribute('src');
+            });
+
+            // Scroll to Top
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
+                }
+            });
+
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Enhanced video card hover effects
+            const videoCards = document.querySelectorAll('.video-card');
+            videoCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.querySelector('.play-button').style.transform = 'translate(-50%, -50%) scale(1.1)';
+                    card.querySelector('.video-thumbnail').style.transform = 'scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.querySelector('.play-button').style.transform = 'translate(-50%, -50%) scale(1)';
+                    card.querySelector('.video-thumbnail').style.transform = 'scale(1)';
+                });
+            });
+
+            // Add touch/swipe support for video container
+            let touchStartX = 0;
+            const videoContainer = document.querySelector('.video-container');
+
+            videoContainer.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            videoContainer.addEventListener('touchend', e => {
+                const touchEndX = e.changedTouches[0].screenX;
+                const diffX = touchStartX - touchEndX;
+                
+                if (Math.abs(diffX) > 50) {
+                    videoContainer.scrollLeft += diffX > 0 ? 300 : -300;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

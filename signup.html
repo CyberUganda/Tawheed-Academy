@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Recitation Platform</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+
+        .header {
+            text-align: center;
+            color: #2c5f2d;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .section-title {
+            color: #2c5f2d;
+            border-left: 4px solid #2c5f2d;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+
+        .reciter-list {
+            list-style: none;
+            padding: 0;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .reciter-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .reciter-item:last-child {
+            border-bottom: none;
+        }
+
+        .reciter-link {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .reciter-link:hover {
+            background-color: #f0faf0;
+            transform: translateX(5px);
+        }
+
+        .subsection-title {
+            font-weight: bold;
+            color: #1e401f;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+
+        .nested-list {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Support Us This Ramathan<br>Your donation helps us continue our work!</h1>
+    </header>
+
+    <h2 class="section-title">POPULAR RECITERS</h2>
+    
+    <div class="main-container">
+        <!-- Left Column -->
+        <div class="column">
+            <div class="subsection-title">About Best</div>
+            <ul class="reciter-list">
+                
+                <li class="reciter-item">
+                    
+                    <a href="001.mp3" class="reciter-link">Abdul Basit</a>
+                
+                    <ul class="nested-list">
+                        <li><a href="#" class="reciter-link">Abdur Rahman</a></li>
+                        <li><a href="#" class="reciter-link">As-Sudais</a></li>
+                    </ul>
+                </li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Abu Bakr al-Sharif</a></li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Fathi Seferagic</a></li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Maher Al Moseafiy</a></li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Mahmoud Khalil Al-Hasary</a></li>
+            </ul>
+        </div>
+
+        <!-- Right Column -->
+        <div class="column">
+            <div class="subsection-title">QURAN RECITATION</div>
+            <ul class="reciter-list">
+                <li class="reciter-item"><a href="#" class="reciter-link">Mishary Rashid Alafasy</a></li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Raad Mohammad al Kurdi</a></li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Saad al-Ghamdi</a></li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Sahl Vash</a></li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Saud Al-Shuraim</a></li>
+                <li class="reciter-item"><a href="#" class="reciter-link">Yasser Al Dessari</a></li>
+                <li class="reciter-item"><a href="index.html" class="reciter-link">HOME</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive functionality
+        document.querySelectorAll('.reciter-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Add actual download/play functionality
+                const reciterName = this.textContent;
+                alert(`Selected reciter: ${reciterName}\n(Add playback/download logic here)`);
+                
+                // Example download implementation:
+                // const downloadLink = document.createElement('a');
+                // downloadLink.href = `audio/${reciterName}.mp3`;
+                // downloadLink.download = true;
+                // downloadLink.click();
+            });
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.reciter-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
